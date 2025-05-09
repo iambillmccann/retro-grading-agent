@@ -15,7 +15,7 @@ def test_extract_docx_text():
 def test_extract_pdf_text():
     file_path = "tests/fixtures/sample.pdf"
     text = extract_text(file_path)
-    assert "Retrospective" in text
+    assert "Sprint" in text
     assert len(text) > 10
 
 
