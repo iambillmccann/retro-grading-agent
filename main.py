@@ -17,7 +17,9 @@ def process_file(filepath: str) -> dict:
         print("[bold cyan]Grading...[/bold cyan]")
         result = grade_retrospective(text)
         print(f"\n[bold green]Result for {Path(filepath).name}:[/bold green]")
-        print_json(data=result)
+        print(
+            f"[bold green]Graded: {result.get('student_name', 'Unknown')} — Score: {result.get('score', '?')}[/bold green]"
+        )
         return {
             "filename": Path(filepath).name,
             "student_name": result.get("student_name", ""),
@@ -66,6 +68,12 @@ def main():
         const="results/grading_results.csv",
         help="Optional output CSV path",
     )
+    parser.add_argument(
+        "--json",
+        nargs="?",
+        const="results/grading_results.json",
+        help="Optional output JSON path",
+    )
     args = parser.parse_args()
 
     path = Path(args.path)
@@ -91,6 +99,9 @@ def main():
     if args.save and all_results:
         output_path = args.save
         write_results_to_csv(all_results, output_path)
+    if args.json and all_results:
+        json_path = args.json
+        write_results_to_json(all_results, json_path)
 
 
 if __name__ == "__main__":
