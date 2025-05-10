@@ -7,7 +7,7 @@ from pathlib import Path
 import csv
 from app.parser import extract_text
 from app.grader import grade_retrospective
-from rich import print_json, print
+from rich import print
 
 
 def process_file(filepath: str) -> dict:
@@ -84,7 +84,11 @@ def main():
         if result and args.save:
             all_results.append(result)
     elif path.is_dir():
-        files = list(path.glob("*.docx")) + list(path.glob("*.pdf"))
+        files = (
+            list(path.glob("*.docx"))
+            + list(path.glob("*.pdf"))
+            + list(path.glob("*.txt"))
+        )
         if not files:
             print(f"[bold yellow]No .docx or .pdf files found in {path}[/bold yellow]")
             return
