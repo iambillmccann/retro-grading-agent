@@ -16,27 +16,17 @@ def process_file(filepath: str, prompt_path: str) -> dict:
         text = extract_text(filepath)
         print("[bold cyan]Grading...[/bold cyan]")
         result = grade_with_prompt(text, prompt_path)
-        print(
-            f"[bold green]Graded: {result.get('student_name', 'Unknown')} — Score: {result.get('score', '?')}[/bold green]"
-        )
-        return {
-            "filename": Path(filepath).name,
-            "student_name": result.get("student_name", ""),
-            "score": result.get("score", ""),
-            "overall_thoughts": result["breakdown"].get(
-                "Overall thoughts on the sprint", ""
-            ),
-            "personal_contributions": result["breakdown"].get(
-                "Personal contributions", ""
-            ),
-            "things_that_went_well": result["breakdown"].get(
-                "Things that went well", ""
-            ),
-            "things_that_could_be_improved": result["breakdown"].get(
-                "Things that could be improved", ""
-            ),
-            "teammate_ratings": result["breakdown"].get("Teammate ratings", ""),
-        }
+
+        # Dynamically attach filename
+        result["filename"] = Path(filepath).name
+
+        # Safe, dynamic summary for console
+        student = result.get("student_name", "Unknown")
+        score = result.get("score", "?")
+        print(f"[bold green]Graded: {student} — Score: {score}[/bold green]")
+
+        return result
+
     except Exception as e:
         print(f"[bold red]Error processing {filepath}:[/bold red] {e}")
         return None
