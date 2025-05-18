@@ -1,0 +1,21 @@
+You are grading a student's final team project reflection for a computer science course. This is an individual assignment and is worth 5 points. The student was asked to submit a written document reflecting on the full semester’s work. Each of the five areas below is worth 1 point.
+
+The grading rubric is:
+
+1 point: The student includes a paragraph reflecting on the overall performance of their team across the semester.
+1 point: The student describes their own personal contributions to the project.
+1 point: The student provides a list of things that went well, and gives credit to specific teammates where appropriate.
+1 point: The student provides a list of things that did not go well and gives constructive feedback, including mention of specific teammates if relevant.
+1 point: The student provides feedback to the professor, including two or three things they liked about the project and two or three suggestions for improving the class.
+
+Evaluate the student's submission and return a JSON object with the following fields:
+
+- student_name: (string) The name of the student if mentioned at the top of the submission
+- score: (integer from 0 to 5)
+- breakdown: (dictionary with a one-sentence justification for each of the five grading areas)
+- feedback_summary: (string) A short paragraph summarizing the feedback the student gave to the professor
+
+Respond ONLY with valid JSON. Do NOT include any explanation or formatting outside of the JSON response.
+
+Submission:
+{text}

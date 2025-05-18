@@ -6,17 +6,16 @@ import json
 from pathlib import Path
 import csv
 from app.parser import extract_text
-from app.grader import grade_retrospective
+from app.grader import grade_with_prompt
 from rich import print
 
 
-def process_file(filepath: str) -> dict:
+def process_file(filepath: str, prompt_path: str) -> dict:
     print(f"[bold cyan]Reading:[/bold cyan] {filepath}")
     try:
         text = extract_text(filepath)
         print("[bold cyan]Grading...[/bold cyan]")
-        result = grade_retrospective(text)
-        print(f"\n[bold green]Result for {Path(filepath).name}:[/bold green]")
+        result = grade_with_prompt(text, prompt_path)
         print(
             f"[bold green]Graded: {result.get('student_name', 'Unknown')} — Score: {result.get('score', '?')}[/bold green]"
         )
@@ -60,8 +59,13 @@ def write_results_to_json(results: list[dict], output_file: str):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Grade sprint retrospectives.")
+    parser = argparse.ArgumentParser(description="Grade student assignments using AI.")
     parser.add_argument("path", help="Path to a file or folder")
+    parser.add_argument(
+        "--prompt",
+        required=True,
+        help="Path to the .txt file containing the grading prompt",
+    )
     parser.add_argument(
         "--save",
         nargs="?",
@@ -80,7 +84,7 @@ def main():
     all_results = []
 
     if path.is_file():
-        result = process_file(str(path))
+        result = process_file(str(path), args.prompt)
         if result and args.save:
             all_results.append(result)
     elif path.is_dir():
@@ -90,10 +94,12 @@ def main():
             + list(path.glob("*.txt"))
         )
         if not files:
-            print(f"[bold yellow]No .docx or .pdf files found in {path}[/bold yellow]")
+            print(
+                f"[bold yellow]No .docx, .pdf, or .txt files found in {path}[/bold yellow]"
+            )
             return
         for file in files:
-            result = process_file(str(file))
+            result = process_file(str(file), args.prompt)
             if result:
                 all_results.append(result)
     else:
@@ -101,11 +107,9 @@ def main():
         return
 
     if args.save and all_results:
-        output_path = args.save
-        write_results_to_csv(all_results, output_path)
+        write_results_to_csv(all_results, args.save)
     if args.json and all_results:
-        json_path = args.json
-        write_results_to_json(all_results, json_path)
+        write_results_to_json(all_results, args.json)
 
 
 if __name__ == "__main__":

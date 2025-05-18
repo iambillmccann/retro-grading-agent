@@ -1,8 +1,7 @@
 """
 grader.py
 
-This module uses the new OpenAI SDK (>=1.0.0) to evaluate a student's
-sprint retrospective using GPT-4-turbo.
+This module uses the OpenAI SDK (>=1.0.0) to evaluate text using a provided prompt template.
 """
 
 import os
@@ -11,7 +10,7 @@ import re
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# Load API key
+# Load environment variables
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 model = os.getenv("OPENAI_MODEL", "gpt-4-turbo")
@@ -20,35 +19,22 @@ model = os.getenv("OPENAI_MODEL", "gpt-4-turbo")
 client = OpenAI(api_key=api_key)
 
 
-def grade_retrospective(text: str) -> dict:
+def grade_with_prompt(text: str, prompt_path: str) -> dict:
     """
-    Analyze the given retrospective text and return a grading breakdown.
+    Sends the provided text to OpenAI using the specified prompt template.
+    The prompt should include a `{text}` placeholder.
 
     Args:
-        text (str): The student's retrospective submission.
+        text (str): The input student text to grade.
+        prompt_path (str): Path to the prompt file with a {text} placeholder.
 
     Returns:
-        dict: A structured grading result.
+        dict: The parsed response from the model.
     """
-    prompt = f"""
-You are grading a student's sprint retrospective. The grading rubric is:
+    with open(prompt_path, "r", encoding="utf-8") as f:
+        prompt_template = f.read()
 
-1 point: Overall thoughts on the sprint
-1 point: Personal contributions
-1 point: Things that went well
-1 point: Things that could be improved
-1 point: Teammate ratings
-
-Analyze the text below and return a JSON object with the following keys:
-- student_name (string)
-- score (integer from 0 to 5)
-- breakdown (dictionary with one sentence for each of the five criteria)
-
-Respond ONLY with valid JSON. Do NOT include any explanation or formatting.
-
-Text:
-{text}
-"""
+    prompt = prompt_template.format(text=text)
 
     response = client.chat.completions.create(
         model=model,
@@ -58,8 +44,7 @@ Text:
 
     content = response.choices[0].message.content
 
-    # After receiving content = response.choices[0].message.content
-    # Strip Markdown-style ```json ... ``` if present
+    # Strip Markdown-style ```json blocks if present
     cleaned = re.sub(r"^```json\s*|\s*```$", "", content.strip(), flags=re.MULTILINE)
 
     try:

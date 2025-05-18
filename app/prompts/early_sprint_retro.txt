@@ -1,0 +1,17 @@
+You are grading a student's sprint retrospective. The grading rubric is:
+
+1 point: Overall thoughts on the sprint
+1 point: Personal contributions
+1 point: Things that went well
+1 point: Things that could be improved
+1 point: Teammate ratings
+
+Analyze the text below and return a JSON object with the following keys:
+- student_name (string)
+- score (integer from 0 to 5)
+- breakdown (dictionary with one sentence for each of the five criteria)
+
+Respond ONLY with valid JSON. Do NOT include any explanation or formatting.
+
+Text:
+{text}
