@@ -176,3 +176,4 @@ cython_debug/
 # Ignore all files inside data/
 data/*
 results/*
+venv/
