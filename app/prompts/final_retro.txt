@@ -12,7 +12,7 @@ Evaluate the student's submission and return a JSON object with the following fi
 
 - student_name: (string) The name of the student if mentioned at the top of the submission
 - score: (integer from 0 to 5)
-- breakdown: (dictionary with a one-sentence justification for each of the five grading areas)
+- breakdown: (string) A short paragraph describing why points were taken off. If the student received full credit simply state "Full credit"
 - feedback_summary: (string) A short paragraph summarizing the feedback the student gave to the professor
 
 Respond ONLY with valid JSON. Do NOT include any explanation or formatting outside of the JSON response.
