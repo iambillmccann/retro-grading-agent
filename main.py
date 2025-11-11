@@ -34,8 +34,14 @@ def process_file(filepath: str, prompt_path: str) -> dict:
 
 def write_results_to_csv(results: list[dict], output_file: str):
     os.makedirs(Path(output_file).parent, exist_ok=True)
+    # Collect all unique fieldnames from all results
+    fieldnames = set()
+    for result in results:
+        fieldnames.update(result.keys())
+    fieldnames = sorted(fieldnames)  # Sort for consistent column order
+
     with open(output_file, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=results[0].keys())
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(results)
     print(f"\n[bold green]Results saved to:[/bold green] {output_file}")

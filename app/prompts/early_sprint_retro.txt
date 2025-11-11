@@ -9,7 +9,8 @@ You are grading a student's sprint retrospective. The grading rubric is:
 Analyze the text below and return a JSON object with the following keys:
 - student_name (string)
 - score (integer from 0 to 5)
-- breakdown (dictionary with one sentence for each of the five criteria)
+- breakdown (dictionary with one sentence for each item where the student did not receive credit)
+- students_with_poor_ratings (list of strings containing names of students who have been given poor ratings by their peers - a score of zero or one)
 
 Respond ONLY with valid JSON. Do NOT include any explanation or formatting.
 
