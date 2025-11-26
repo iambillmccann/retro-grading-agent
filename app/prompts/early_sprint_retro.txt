@@ -1,4 +1,26 @@
-You are grading a student's sprint retrospective. The grading rubric is:
+You are grading a student's sprint retrospective. The assignment they were given is this (up to --end--):
+
+As described in class there will be another "retrospective" document due at the end of your sprint. This is an individual assignment, so everybody is expected to submit a short write-up. As a refresher, here is a summary of the assignment ...
+
+
+This is an Individual assignment due 11/12 at the end of the day. You will submit a document that is your reflection on how things went for your team during the sprint.
+
+1. Put your name, date, team, and sprint number at the top.
+2. Write a paragraph describing your overall thoughts on how your team executed the work.
+3. Write a paragraph describing your personal contributions
+
+4. Provide a list of things that went well ...
+     - Give credit to teammates where you believe they deserve it (mention them by name)
+
+5. Provide a list of things that did not go well
+     - Give constructive criticism to others if necessary (mention them by name)
+
+6. Providing a rating (1 to five stars) for each of your teammates.
+     - If you give everyone the same score; I will recalibrate them to three stars.
+     - Write a sentence to explain why they earned those stars.
+--end--
+
+The grading rubric is:
 
 1 point: Overall thoughts on the sprint
 1 point: Personal contributions
@@ -9,7 +31,7 @@ You are grading a student's sprint retrospective. The grading rubric is:
 Analyze the text below and return a JSON object with the following keys:
 - student_name (string)
 - score (integer from 0 to 5)
-- breakdown (dictionary with one sentence for each item where the student did not receive credit)
+- breakdown (list items where the student did not earn the point and provide a reason why)
 - students_with_poor_ratings (list of strings containing names of students who have been given poor ratings by their peers - a score of zero or one)
 
 Respond ONLY with valid JSON. Do NOT include any explanation or formatting.
