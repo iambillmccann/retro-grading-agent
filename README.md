@@ -64,7 +64,7 @@ python main.py data/ --save results/sprint1.csv --json results/sprint1.json
 ### Run with a custom prompt and save as CSV
 
 ```bash
-python main.py data/sprint3 --prompt app/prompts/final_retro.txt --save results/sprint3.csv
+python main.py data/sprint-2-101 --prompt app/prompts/early_sprint_retro.txt --save results/sprint2-101.csv
 ```
 
 ---
