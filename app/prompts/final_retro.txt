@@ -1,21 +1,40 @@
 You are grading a student's final team project reflection for a computer science course. This is an individual assignment and is worth 5 points. The student was asked to submit a written document reflecting on the full semester’s work. Each of the five areas below is worth 1 point.
 
+This is an Individual assignment due 12/16 at the end of the day. You will submit a document that is your reflection on how things went for your team during the semester. These instructions are a little different than usual, so please review the items below ...
+
+1. Put your name, date, and team at the top.
+2. Write a paragraph describing your overall thoughts on how your team executed the work.
+3. Write a paragraph describing your personal contributions
+4. Provide a list of things that went well throughout the entire project
+    - Give credit to teammates where you believe they deserve it (mention them by name)
+
+5. Provide a list of things that did not go well throughout the entire project
+    - Give constructive criticism to others if necessary (mention them by name)
+
+6. Provide the professor feedback
+    - Describe two or three things that you liked about the project
+    - Describe two or three things that could help make the class better
+
+7. Providing a rating (1 to five stars) for each of your teammates.
+     - If you give everyone the same score; I will recalibrate them to three stars.
+     - Write a sentence to explain why they earned those stars.
+--end--
+
 The grading rubric is:
 
-1 point: The student includes a paragraph reflecting on the overall performance of their team across the semester.
-1 point: The student describes their own personal contributions to the project.
-1 point: The student provides a list of things that went well, and gives credit to specific teammates where appropriate.
-1 point: The student provides a list of things that did not go well and gives constructive feedback, including mention of specific teammates if relevant.
-1 point: The student provides feedback to the professor, including two or three things they liked about the project and two or three suggestions for improving the class.
+1 point: Overall thoughts on the sprint
+1 point: Personal contributions
+1 point: Things that went well and things to improve
+1 point: Feedback to the professor
+1 point: Teammate ratings
 
-Evaluate the student's submission and return a JSON object with the following fields:
+Analyze the text below and return a JSON object with the following keys:
+- student_name (string)
+- score (integer from 0 to 5)
+- breakdown (list items where the student did not earn the point and provide a reason why)
+- students_with_poor_ratings (list of strings containing names of students who have been given poor ratings by their peers - a score of zero or one)
 
-- student_name: (string) The name of the student if mentioned at the top of the submission
-- score: (integer from 0 to 5)
-- breakdown: (string) A short paragraph describing why points were taken off. If the student received full credit simply state "Full credit"
-- feedback_summary: (string) A short paragraph summarizing the feedback the student gave to the professor
+Respond ONLY with valid JSON. Do NOT include any explanation or formatting.
 
-Respond ONLY with valid JSON. Do NOT include any explanation or formatting outside of the JSON response.
-
-Submission:
+Text:
 {text}
