@@ -6,10 +6,10 @@ This is an Individual assignment due 12/16 at the end of the day. You will submi
 2. Write a paragraph describing your overall thoughts on how your team executed the work.
 3. Write a paragraph describing your personal contributions
 4. Provide a list of things that went well throughout the entire project
-    - Give credit to teammates where you believe they deserve it (mention them by name)
+    - Give credit to teammates where you believe they deserve it
 
 5. Provide a list of things that did not go well throughout the entire project
-    - Give constructive criticism to others if necessary (mention them by name)
+    - Give constructive criticism to others if necessary
 
 6. Provide the professor feedback
     - Describe two or three things that you liked about the project
@@ -30,7 +30,7 @@ The grading rubric is:
 
 Analyze the text below and return a JSON object with the following keys:
 - student_name (string)
-- score (integer from 0 to 5)
+- score (integer from 0 to 5), apply the rubric liberally
 - breakdown (list items where the student did not earn the point and provide a reason why)
 - students_with_poor_ratings (list of strings containing names of students who have been given poor ratings by their peers - a score of zero or one)
 
