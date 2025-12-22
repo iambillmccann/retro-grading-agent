@@ -65,6 +65,8 @@ python main.py data/ --save results/sprint1.csv --json results/sprint1.json
 
 ```bash
 python main.py data/sprint-2-101 --prompt app/prompts/early_sprint_retro.txt --save results/sprint2-101.csv
+-or-
+python main.py data/sprint-4-103 --prompt app/prompts/final_retro.txt --save results/sprint4-103.csv
 ```
 
 ---
