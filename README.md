@@ -1,6 +1,7 @@
 # 🧠 Retrospective Grading Agent
 
 This command-line tool provides automated grading for student assignments:
+
 1. **AI-powered grading** for sprint retrospectives using GPT-4-turbo
 2. **Rule-based grading** for JSON assignment submissions
 
@@ -11,6 +12,7 @@ Supports `.docx`, `.pdf`, `.txt`, and `.json` files with outputs to CSV and/or J
 ## ✅ Features
 
 ### AI-Powered Retrospective Grading
+
 - Grades retrospectives using a 5-point rubric:
   - Overall thoughts
   - Personal contributions
@@ -25,6 +27,7 @@ Supports `.docx`, `.pdf`, `.txt`, and `.json` files with outputs to CSV and/or J
   - JSON report
 
 ### Rule-Based JSON Assignment Grading
+
 - Grades JSON submission files based on a structured rubric
 - Validates filename format, JSON syntax, key names, and values
 - Automatic scoring with detailed feedback
@@ -38,7 +41,7 @@ Supports `.docx`, `.pdf`, `.txt`, and `.json` files with outputs to CSV and/or J
 
 ```bash
 python main.py data/sample.docx
-````
+```
 
 ### Grade a folder of files
 
@@ -82,9 +85,9 @@ python main.py data/sprint-4-103 --prompt app/prompts/final_retro.txt --save res
 
 ## 🧪 File Types
 
-* `.docx` (Word documents)
-* `.pdf` (text-based PDFs)
-* `.txt` (plain text)
+- `.docx` (Word documents)
+- `.pdf` (text-based PDFs)
+- `.txt` (plain text)
 
 ---
 
@@ -92,14 +95,14 @@ python main.py data/sprint-4-103 --prompt app/prompts/final_retro.txt --save res
 
 Each row contains:
 
-* `filename`
-* `student_name`
-* `score` (out of 5)
-* `overall_thoughts`
-* `personal_contributions`
-* `things_that_went_well`
-* `things_that_could_be_improved`
-* `teammate_ratings`
+- `filename`
+- `student_name`
+- `score` (out of 5)
+- `overall_thoughts`
+- `personal_contributions`
+- `things_that_went_well`
+- `things_that_could_be_improved`
+- `teammate_ratings`
 
 If JSON is used, a list of structured records is written.
 
@@ -139,18 +142,18 @@ retro_grading_agent/
 
 ## 🧠 Powered by
 
-* [OpenAI GPT-4 Turbo](https://platform.openai.com/docs/models/gpt-4)
-* [python-docx](https://github.com/python-openxml/python-docx)
-* [PyMuPDF](https://github.com/pymupdf/PyMuPDF)
-* [rich](https://github.com/Textualize/rich)
+- [OpenAI GPT-4 Turbo](https://platform.openai.com/docs/models/gpt-4)
+- [python-docx](https://github.com/python-openxml/python-docx)
+- [PyMuPDF](https://github.com/pymupdf/PyMuPDF)
+- [rich](https://github.com/Textualize/rich)
 
 ---
 
 ## 📌 Coming Soon (Ideas)
 
-* Flag retrospectives with potential team issues
-* Export flagged entries only
-* Integration with Google Drive or LMS
+- Flag retrospectives with potential team issues
+- Export flagged entries only
+- Integration with Google Drive or LMS
 
 ---
 
@@ -177,32 +180,33 @@ python grade_json_assignment.py <input_directory> <output_csv_file>
 # Grade cs490-hw1 submissions
 python grade_json_assignment.py data/cs490-hw1 results/cs490-hw1.csv
 
-# Grade cs684-hw1 submissions  
+# Grade cs684-hw1 submissions
 python grade_json_assignment.py data/cs684-hw1 results/cs684-hw1.csv
 ```
 
 ### Grading Rubric (5 points total)
 
-1. **File named correctly** (1 point)  
+1. **File named correctly** (1 point)
    - Must follow pattern: `[lastname]-[firstname].json`
    - Example: `mccann-bill.json`
 
-2. **Well-formed JSON** (1 point)  
+2. **Well-formed JSON** (1 point)
    - File must be valid JSON syntax
 
-3. **Key names correctly specified** (1 point)  
+3. **Key names correctly specified** (1 point)
    - Must have exactly these keys (case-sensitive): `name`, `ucid`, `discordId`, `githubId`
 
-4. **All values supplied** (2 points)  
+4. **All values supplied** (2 points)
    - All four values must be present and non-empty
    - Partial credit (1 point) if only 1-2 values are missing
 
 ### Output Format
 
 The script generates a CSV file with the following columns:
+
 - `filename` - The original submission filename
 - `name` - Student's name from JSON
-- `ucid` - Student's UCID from JSON  
+- `ucid` - Student's UCID from JSON
 - `discordId` - Student's Discord ID from JSON
 - `githubId` - Student's GitHub ID from JSON
 - `score` - Points earned (0-5)
@@ -215,4 +219,3 @@ filename,name,ucid,discordId,githubId,score,feedback
 mccann-bill.json,Bill McCann,wfm8,iambillmccann,iambillmccann,5,Perfect!
 smith-john.json,John Smith,js123,,,2,"Keys: Missing keys: discordId, githubId"
 ```
-
