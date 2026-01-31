@@ -1,11 +1,16 @@
 # 🧠 Retrospective Grading Agent
 
-This AI-powered command-line tool grades student sprint retrospectives using GPT-4-turbo and outputs structured scores and summaries in CSV and/or JSON format. It supports `.docx`, `.pdf`, and `.txt` files.
+This command-line tool provides automated grading for student assignments:
+1. **AI-powered grading** for sprint retrospectives using GPT-4-turbo
+2. **Rule-based grading** for JSON assignment submissions
+
+Supports `.docx`, `.pdf`, `.txt`, and `.json` files with outputs to CSV and/or JSON format.
 
 ---
 
 ## ✅ Features
 
+### AI-Powered Retrospective Grading
 - Grades retrospectives using a 5-point rubric:
   - Overall thoughts
   - Personal contributions
@@ -18,8 +23,12 @@ This AI-powered command-line tool grades student sprint retrospectives using GPT
   - Console summaries
   - CSV report
   - JSON report
-- Flags errors and skips unsupported files
-- Clean CLI output with [rich](https://github.com/Textualize/rich)
+
+### Rule-Based JSON Assignment Grading
+- Grades JSON submission files based on a structured rubric
+- Validates filename format, JSON syntax, key names, and values
+- Automatic scoring with detailed feedback
+- Generates CSV reports with scores and feedback
 
 ---
 
@@ -149,3 +158,61 @@ retro_grading_agent/
 
 Let me know if you want a condensed version for a docstring, or want to generate a GitHub Actions workflow to auto-grade on file uploads.
 ```
+
+---
+
+## 📊 Rule-Based JSON Assignment Grading
+
+The `grade_json_assignment.py` script provides automated grading for JSON assignment submissions.
+
+### Usage
+
+```bash
+python grade_json_assignment.py <input_directory> <output_csv_file>
+```
+
+### Examples
+
+```bash
+# Grade cs490-hw1 submissions
+python grade_json_assignment.py data/cs490-hw1 results/cs490-hw1.csv
+
+# Grade cs684-hw1 submissions  
+python grade_json_assignment.py data/cs684-hw1 results/cs684-hw1.csv
+```
+
+### Grading Rubric (5 points total)
+
+1. **File named correctly** (1 point)  
+   - Must follow pattern: `[lastname]-[firstname].json`
+   - Example: `mccann-bill.json`
+
+2. **Well-formed JSON** (1 point)  
+   - File must be valid JSON syntax
+
+3. **Key names correctly specified** (1 point)  
+   - Must have exactly these keys (case-sensitive): `name`, `ucid`, `discordId`, `githubId`
+
+4. **All values supplied** (2 points)  
+   - All four values must be present and non-empty
+   - Partial credit (1 point) if only 1-2 values are missing
+
+### Output Format
+
+The script generates a CSV file with the following columns:
+- `filename` - The original submission filename
+- `name` - Student's name from JSON
+- `ucid` - Student's UCID from JSON  
+- `discordId` - Student's Discord ID from JSON
+- `githubId` - Student's GitHub ID from JSON
+- `score` - Points earned (0-5)
+- `feedback` - Detailed feedback on what points were lost (if any)
+
+### Example Output
+
+```csv
+filename,name,ucid,discordId,githubId,score,feedback
+mccann-bill.json,Bill McCann,wfm8,iambillmccann,iambillmccann,5,Perfect!
+smith-john.json,John Smith,js123,,,2,"Keys: Missing keys: discordId, githubId"
+```
+
