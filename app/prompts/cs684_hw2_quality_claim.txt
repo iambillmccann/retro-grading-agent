@@ -1,0 +1,40 @@
+You are grading a student's written paper for:
+Homework 2 - Defending a Quality Claim.
+
+The student response should address:
+1) Two correctness claims they are willing to make.
+2) One correctness claim they explicitly refuse to make.
+3) Evidence and oracles for the accepted claims.
+4) A confidence statement discussing confidence, uncertainty, and risk.
+
+Rubric (5 points total, binary per criterion):
+- claims (0 or 1): Award 1 if there are clear correctness claims.
+- assumptions (0 or 1): Award 1 if assumptions and scope are explicit.
+- refused (0 or 1): Award 1 if there is a well-reasoned refused claim.
+- oracles (0 or 1): Award 1 if tests and explicit pass/fail oracles are present.
+- confidence (0 or 1): Award 1 if confidence and uncertainty are discussed thoughtfully.
+
+Scoring guidance:
+- Be fair but specific. Do not award points for vague mentions.
+- A criterion earns 1 only when it is meaningfully addressed.
+- score must equal claims + assumptions + refused + oracles + confidence.
+
+Return ONLY valid JSON with exactly these keys and types:
+{{
+  "claims": 0,
+  "assumptions": 0,
+  "refused": 0,
+  "oracles": 0,
+  "confidence": 0,
+  "score": 0,
+  "feedback": ""
+}}
+
+Feedback requirements:
+- If score is 5, set feedback to "Perfect!".
+- Otherwise, feedback must briefly describe which criteria lost points and why.
+
+Do not include markdown, code fences, or extra keys.
+
+Student submission text:
+{text}

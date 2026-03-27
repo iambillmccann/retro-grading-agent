@@ -81,6 +81,12 @@ python main.py data/sprint-2-101 --prompt app/prompts/early_sprint_retro.txt --s
 python main.py data/sprint-4-103 --prompt app/prompts/final_retro.txt --save results/sprint4-103.csv
 ```
 
+### Grade CS684 HW2 quality-claim papers
+
+```bash
+python main.py data/cs684-hw2 --prompt app/prompts/cs684_hw2_quality_claim.txt --save results/cs684-hw2.csv
+```
+
 ---
 
 ## 🧪 File Types

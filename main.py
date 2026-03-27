@@ -38,7 +38,38 @@ def write_results_to_csv(results: list[dict], output_file: str):
     fieldnames = set()
     for result in results:
         fieldnames.update(result.keys())
-    fieldnames = sorted(fieldnames)  # Sort for consistent column order
+    ordered_hw2 = [
+        "filename",
+        "claims",
+        "assumptions",
+        "refused",
+        "oracles",
+        "confidence",
+        "score",
+        "feedback",
+    ]
+    ordered_retro = [
+        "filename",
+        "student_name",
+        "score",
+        "overall_thoughts",
+        "personal_contributions",
+        "things_that_went_well",
+        "things_that_could_be_improved",
+        "teammate_ratings",
+        "breakdown",
+        "students_with_poor_ratings",
+    ]
+
+    if set(ordered_hw2).issubset(fieldnames):
+        extra = sorted(fieldnames - set(ordered_hw2))
+        fieldnames = ordered_hw2 + extra
+    elif {"filename", "student_name", "score"}.issubset(fieldnames):
+        base = [name for name in ordered_retro if name in fieldnames]
+        extra = sorted(fieldnames - set(base))
+        fieldnames = base + extra
+    else:
+        fieldnames = sorted(fieldnames)  # Sort for consistent column order
 
     with open(output_file, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
