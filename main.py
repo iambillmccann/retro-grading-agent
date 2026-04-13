@@ -10,6 +10,34 @@ from app.grader import grade_with_prompt
 from rich import print
 
 
+def resolve_prompt_path(prompt_arg: str) -> str:
+    """Resolve a prompt path from CLI input.
+
+    Supports:
+    - exact relative/absolute paths passed by the user
+    - shorthand paths like ./prompts/foo.txt by mapping to app/prompts/foo.txt
+    """
+    prompt_path = Path(prompt_arg)
+
+    if prompt_path.exists():
+        return str(prompt_path)
+
+    repo_root = Path(__file__).parent
+    alt_candidates = [
+        repo_root / prompt_arg,
+        repo_root / "app" / "prompts" / prompt_path.name,
+    ]
+
+    for candidate in alt_candidates:
+        if candidate.exists():
+            return str(candidate)
+
+    raise FileNotFoundError(
+        f"Prompt file not found: {prompt_arg}. Try one of: "
+        f"app/prompts/{prompt_path.name}"
+    )
+
+
 def process_file(filepath: str, prompt_path: str) -> dict:
     print(f"[bold cyan]Reading:[/bold cyan] {filepath}")
     try:
@@ -107,11 +135,17 @@ def main():
     )
     args = parser.parse_args()
 
+    try:
+        prompt_path = resolve_prompt_path(args.prompt)
+    except FileNotFoundError as e:
+        print(f"[bold red]{e}[/bold red]")
+        return
+
     path = Path(args.path)
     all_results = []
 
     if path.is_file():
-        result = process_file(str(path), args.prompt)
+        result = process_file(str(path), prompt_path)
         if result and args.save:
             all_results.append(result)
     elif path.is_dir():
@@ -126,7 +160,7 @@ def main():
             )
             return
         for file in files:
-            result = process_file(str(file), args.prompt)
+            result = process_file(str(file), prompt_path)
             if result:
                 all_results.append(result)
     else:
