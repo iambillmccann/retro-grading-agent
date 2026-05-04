@@ -87,6 +87,12 @@ python main.py data/sprint-4-103 --prompt app/prompts/final_retro.txt --save res
 python main.py data/cs684-hw2 --prompt app/prompts/cs684_hw2_quality_claim.txt --save results/cs684-hw2.csv
 ```
 
+### Grade CS490 Final retrospective
+
+```bash
+python main.py data/sprint-3-spring-2026A --prompt app/prompts/final_retro.txt --save results/sprint3-spring-2026A.csv
+```
+
 ---
 
 ## 🧪 File Types
