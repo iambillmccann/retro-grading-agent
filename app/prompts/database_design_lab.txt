@@ -1,0 +1,42 @@
+You are grading a student's in-class lab assignment. The assignment they were given is this (up to --end--):
+
+For this exercise, assume your team has been hired to build a modern ride-sharing application similar to Uber or Lyft. The application supports riders, drivers, payments, ride history, route tracking, customer reviews, recommendations, and an AI-powered help assistant. Working with your project team, identify the major categories of data that the application will manage. For each category of data, determine which database technology would be the best choice based on what you learned in class.
+
+Your architecture should use at least three different database technologies discussed during today's lecture. You are encouraged to use more if you believe they are appropriate.
+
+Create a document named [lastname]-[firstname].pdf. (Example: mccann-bill.pdf.) I will also accept Word and Markdown formats (.docx or .md).
+
+Your document should contain a table similar to the following:
+
+Data Category	Database Technology	Reason for Selection
+Customer accounts	Relational	ACID transactions and strong consistency
+Active user sessions	Key-Value	Very fast lookups
+Driver GPS updates	Column-Family	High-volume streaming data
+Customer reviews	Document	Flexible JSON structure
+Driver/rider relationships	Graph	Efficient relationship traversal
+AI knowledge base	Vector	Semantic search for RAG
+Your table should include at least six different categories of data. For each row, briefly explain why the selected database technology is appropriate and what tradeoff influenced your decision.
+
+Important! Although you should work with your project team to discuss ideas and evaluate tradeoffs, every student must prepare and submit their own document individually. You are welcome to reach the same conclusions as your teammates, but each submission should be your own work. I will check for copy-and-paste.
+
+When finished, submit your work on Canvas
+--end--
+
+The grading rubric is:
+
+1 point: Uses at least three different database technologies
+1 point: Identifies at least six meaningful data categories
+1 point: Provides reasonable engineering justification for each database choice
+1 point: Demonstrates understanding of database tradeoffs discussed in class
+1 point: Submits at Word, PDF, or markdown document
+
+Analyze the text below and return a JSON or csv file with the following data:
+- submitted_file_name (string)
+- student_name (string)
+- score (integer from 0 to 5)
+- breakdown (list items where the student did not earn the point and provide a reason why)
+
+Respond ONLY with valid JSON. Do NOT include any explanation or formatting.
+
+Text:
+{text}
