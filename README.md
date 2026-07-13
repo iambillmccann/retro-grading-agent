@@ -7,6 +7,8 @@ This command-line tool provides automated grading for student assignments:
 
 Supports `.docx`, `.pdf`, `.txt`, and `.json` files with outputs to CSV and/or JSON format.
 
+Each CLI run appends the submitted command to `logs/commands.txt` with an ISO-8601 timestamp.
+
 ---
 
 ## ✅ Features

@@ -7,6 +7,7 @@ from pathlib import Path
 import csv
 from app.parser import extract_text
 from app.grader import grade_with_prompt
+from app.utils import log_cli_command
 from rich import print
 
 
@@ -114,6 +115,11 @@ def write_results_to_json(results: list[dict], output_file: str):
 
 
 def main():
+    try:
+        log_cli_command()
+    except Exception as exc:
+        print(f"[bold yellow]Warning: could not write command log:[/bold yellow] {exc}")
+
     parser = argparse.ArgumentParser(description="Grade student assignments using AI.")
     parser.add_argument("path", help="Path to a file or folder")
     parser.add_argument(
