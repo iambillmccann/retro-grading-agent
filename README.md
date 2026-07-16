@@ -122,6 +122,10 @@ If JSON is used, a list of structured records is written.
 
 ---
 
+## Command logs
+
+## If you can't remember a prior command and want to use it again (or a version of it) then check out the ./logs/commands.txt file. The file contains a time-stamp and record of each command as it is run for an audit trail of app usage. The logs go back as far as July 2026.
+
 ## 🔐 Environment Setup
 
 Create a `.env` file in the project root:
