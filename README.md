@@ -237,3 +237,5 @@ filename,name,ucid,discordId,githubId,score,feedback
 mccann-bill.json,Bill McCann,wfm8,iambillmccann,iambillmccann,5,Perfect!
 smith-john.json,John Smith,js123,,,2,"Keys: Missing keys: discordId, githubId"
 ```
+
+Last used for CS 490 Summer 2026. In-class lab.
