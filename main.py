@@ -7,6 +7,7 @@ from pathlib import Path
 import csv
 from app.parser import extract_text
 from app.grader import grade_with_prompt
+from app.feedback import analyze_professor_feedback, build_instructor_brief_markdown
 from app.utils import log_cli_command
 from rich import print
 
@@ -114,24 +115,65 @@ def write_results_to_json(results: list[dict], output_file: str):
     print(f"\n[bold green]Results saved to:[/bold green] {output_file}")
 
 
+def slugify(value: str) -> str:
+    return "".join(ch if ch.isalnum() or ch in "-_" else "-" for ch in value).strip("-")
+
+
+def default_feedback_output_path(path_arg: str, term: str | None) -> str:
+    cohort = term if term else Path(path_arg).name
+    cohort_slug = slugify(cohort) if cohort else "cohort"
+    return f"results/{cohort_slug}-instructor-brief.md"
+
+
+def run_feedback_summary(
+    path_arg: str, term: str | None, save_path: str, json_path: str | None
+):
+    print(f"[bold cyan]Scanning feedback in:[/bold cyan] {path_arg}")
+    analysis = analyze_professor_feedback(path_arg)
+    label = term if term else Path(path_arg).name
+    markdown = build_instructor_brief_markdown(analysis, cohort_label=label)
+
+    save_file = Path(save_path)
+    save_file.parent.mkdir(parents=True, exist_ok=True)
+    save_file.write_text(markdown, encoding="utf-8")
+    print(f"\n[bold green]Instructor brief saved to:[/bold green] {save_path}")
+
+    if json_path:
+        json_file = Path(json_path)
+        json_file.parent.mkdir(parents=True, exist_ok=True)
+        json_file.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
+        print(f"[bold green]Analysis JSON saved to:[/bold green] {json_path}")
+
+
 def main():
     try:
         log_cli_command()
     except Exception as exc:
         print(f"[bold yellow]Warning: could not write command log:[/bold yellow] {exc}")
 
-    parser = argparse.ArgumentParser(description="Grade student assignments using AI.")
+    parser = argparse.ArgumentParser(
+        description="Grade student assignments and summarize professor feedback."
+    )
     parser.add_argument("path", help="Path to a file or folder")
     parser.add_argument(
         "--prompt",
-        required=True,
+        required=False,
         help="Path to the .txt file containing the grading prompt",
+    )
+    parser.add_argument(
+        "--feedback-summary",
+        action="store_true",
+        help="Generate a one-page instructor brief from student professor-feedback text.",
+    )
+    parser.add_argument(
+        "--term",
+        help="Optional cohort/semester label for the brief title and default output filename.",
     )
     parser.add_argument(
         "--save",
         nargs="?",
         const="results/grading_results.csv",
-        help="Optional output CSV path",
+        help="Optional output path. CSV for grading mode, Markdown for feedback-summary mode.",
     )
     parser.add_argument(
         "--json",
@@ -140,6 +182,19 @@ def main():
         help="Optional output JSON path",
     )
     args = parser.parse_args()
+
+    if args.feedback_summary:
+        save_path = args.save
+        if not save_path or save_path == "results/grading_results.csv":
+            save_path = default_feedback_output_path(args.path, args.term)
+        run_feedback_summary(args.path, args.term, save_path, args.json)
+        return
+
+    if not args.prompt:
+        print(
+            "[bold red]--prompt is required unless --feedback-summary is used.[/bold red]"
+        )
+        return
 
     try:
         prompt_path = resolve_prompt_path(args.prompt)

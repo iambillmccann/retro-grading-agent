@@ -95,6 +95,24 @@ python main.py data/cs684-hw2 --prompt app/prompts/cs684_hw2_quality_claim.txt -
 python main.py data/sprint-3-spring-2026A --prompt app/prompts/final_retro.txt --save results/sprint3-spring-2026A.csv
 ```
 
+### Generate a one-page instructor brief from professor feedback
+
+```bash
+python main.py data/cs490-141-sprint-3 --feedback-summary --term cs490-141-summer-2026-sprint-3
+```
+
+### Save the instructor brief to a custom path
+
+```bash
+python main.py data/cs490-141-sprint-3 --feedback-summary --term cs490-141-summer-2026-sprint-3 --save results/cs490-141-summer-2026-sprint-3-instructor-brief.md
+```
+
+### Export both instructor brief and structured JSON analysis
+
+```bash
+python main.py data/cs490-141-sprint-3 --feedback-summary --term cs490-141-summer-2026-sprint-3 --save results/cs490-141-summer-2026-sprint-3-instructor-brief.md --json results/cs490-141-summer-2026-sprint-3-feedback-analysis.json
+```
+
 ---
 
 ## 🧪 File Types
