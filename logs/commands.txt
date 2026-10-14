@@ -6,3 +6,5 @@
 2026-07-20T10:14:40 main.py data/cs490-141-sprint-3 --feedback-summary --term cs490-141-summer-2026-sprint-3 --save results/cs490-141-summer-2026-sprint-3-instructor-brief.md --json results/cs490-141-summer-2026-sprint-3-feedback-analysis.json
 2026-09-03T18:00:00 python grade_json_assignment.py ./data/cs490-101-fall-2026/cs-490-hw1 ./results/cs490-101-fall-2026-hw1.csv
 2026-09-17:17:00:00 python grade_json_assignment.py ./data/cs490-101-fall-2026/cs-490-hw1 ./results/cs490-101-fall-2026-hw1.csv
+2026-10-14T11:03:22 main.py data/cs490-101-fall-2026 --prompt app/prompts/database_design_lab.txt --save results/cs490-101-fall-2026-hw1-db.csv
+2026-10-14T11:04:34 main.py data/cs490-101-fall-2026/cs-490-hw1 --prompt app/prompts/database_design_lab.txt --save results/cs490-101-fall-2026-hw1-db.csv
