@@ -256,4 +256,4 @@ mccann-bill.json,Bill McCann,wfm8,iambillmccann,iambillmccann,5,Perfect!
 smith-john.json,John Smith,js123,,,2,"Keys: Missing keys: discordId, githubId"
 ```
 
-See the file ./logs/commands.txt for a history of this app's usage
+See the file ./logs/commands.txt for a history of this app's usage. If you are going to copy and paste to re-use commands, be aware that the "python" CLI command keyword is not logged.
