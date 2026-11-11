@@ -2,7 +2,7 @@
 
 This command-line tool provides automated grading for student assignments:
 
-1. **AI-powered grading** for sprint retrospectives using GPT-4-turbo
+1. **AI-powered grading** for sprint retrospectives using GPT-4o
 2. **Rule-based grading** for JSON assignment submissions
 
 Supports `.docx`, `.pdf`, `.txt`, and `.json` files with outputs to CSV and/or JSON format.
@@ -150,7 +150,7 @@ Create a `.env` file in the project root:
 
 ```env
 OPENAI_API_KEY=sk-...
-OPENAI_MODEL=gpt-4-turbo
+OPENAI_MODEL=gpt-4o
 ```
 
 Install dependencies:
@@ -178,7 +178,7 @@ retro_grading_agent/
 
 ## 🧠 Powered by
 
-- [OpenAI GPT-4 Turbo](https://platform.openai.com/docs/models/gpt-4)
+- [OpenAI GPT-4o](https://platform.openai.com/docs/models/gpt-4o)
 - [python-docx](https://github.com/python-openxml/python-docx)
 - [PyMuPDF](https://github.com/pymupdf/PyMuPDF)
 - [rich](https://github.com/Textualize/rich)

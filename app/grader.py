@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
-model = os.getenv("OPENAI_MODEL", "gpt-4-turbo")
+model = os.getenv("OPENAI_MODEL", "gpt-4o")
 
 # Initialize OpenAI client
 client = OpenAI(api_key=api_key)
