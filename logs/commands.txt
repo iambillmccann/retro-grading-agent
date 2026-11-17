@@ -13,3 +13,4 @@
 2026-11-10T10:34:27 /home/iambillmccann/repositories/retro-grading-agent/main.py data/cs490-101-fall-2026/group-a-sprint-1-retro --prompt app/prompts/early_sprint_retro.txt --save results/cs490-101a-fall-2026-sprint-1.csv
 2026-11-10T10:41:39 /home/iambillmccann/repositories/retro-grading-agent/main.py data/cs490-101-fall-2026/group-a-sprint-1-retro --prompt app/prompts/early_sprint_retro.txt --save results/cs490-101a-fall-2026-sprint-1.csv
 2026-11-10T10:56:49 /home/iambillmccann/repositories/retro-grading-agent/main.py data/cs490-101-fall-2026/group-a-sprint-1-retro --prompt app/prompts/early_sprint_retro.txt --save results/cs490-101a-fall-2026-sprint-1.csv
+2026-11-16T18:15:01 /home/iambillmccann/repositories/retro-grading-agent/main.py data/cs490-101-fall-2026/group-b-sprint-1-retro --prompt app/prompts/early_sprint_retro.txt --save results/cs490-101b-fall-2026-sprint-1.csv
